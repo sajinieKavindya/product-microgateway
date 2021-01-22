@@ -112,6 +112,17 @@ type Config struct {
 		ApimCredentials apimCredentials
 		AuthService     authService
 	}
+
+	ControlPlane struct{
+		Credentials struct{
+			Username string `toml:"username"`
+			Password string `toml:"password"`
+		}
+
+		EventHub struct{
+			ServiceUrl string `toml:"serviceUrl"`
+		}
+	}
 }
 
 type apimCredentials struct {

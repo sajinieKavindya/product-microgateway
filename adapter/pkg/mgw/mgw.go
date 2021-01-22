@@ -36,6 +36,7 @@ import (
 	"github.com/wso2/micro-gw/config"
 	logger "github.com/wso2/micro-gw/loggers"
 	xds "github.com/wso2/micro-gw/pkg/xds"
+	subscription "github.com/wso2/micro-gw/pkg/subscription"
 	"google.golang.org/grpc"
 )
 
@@ -119,6 +120,9 @@ func Run(conf *config.Config) {
 
 	// Set enforcer startup configs
 	xds.UpdateEnforcerConfig(conf)
+
+	// Load subscription data
+	subscription.LoadSubscriptionData(conf)
 
 	go restserver.StartRestServer(conf)
 OUTER:
