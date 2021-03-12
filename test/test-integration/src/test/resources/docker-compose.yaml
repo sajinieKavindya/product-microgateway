@@ -1,4 +1,4 @@
-version: "3.7"
+version: "2.4"
 services:
   router:
     image: wso2/mg-router:4.0.0-m8-SNAPSHOT
@@ -33,6 +33,9 @@ services:
       options:
         max-size: "20m"
         max-file: "5"
+    depends_on:
+      apim:
+        condition: service_healthy
     volumes:
       - ./resources/adapter/security:/home/wso2/security
       - ./resources/conf:/home/wso2/conf
@@ -42,6 +45,8 @@ services:
     ports:
       - "18000:18000"
       - "9843:9843"
+    links:
+      - apim
   enforcer:
     image: wso2/mg-enforcer:4.0.0-m8-SNAPSHOT
     logging:
@@ -54,6 +59,7 @@ services:
       - ./resources/enforcer/dropins:/home/wso2/lib/dropins
     links:
       - adapter
+      - apim
     environment:
       - ENFORCER_PRIVATE_KEY_PATH=/home/wso2/security/keystore/mg.key
       - ENFORCER_PUBLIC_CERT_PATH=/home/wso2/security/keystore/mg.pem
@@ -63,7 +69,7 @@ services:
       - ADAPTER_XDS_PORT=18000
       - ENFORCER_LABEL=Production and Sandbox
       - XDS_MAX_MSG_SIZE=4194304
-      - JAVA_OPTS=${JAVA_OPTS}
+      - JAVA_OPTS=${JAVA_OPTS} -Dhttpclient.hostnameVerifier=AllowAll
       - apim_admin_pwd=admin
     ports:
       - "8081:8081"

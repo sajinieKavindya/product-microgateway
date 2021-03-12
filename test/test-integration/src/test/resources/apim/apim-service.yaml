@@ -1,0 +1,14 @@
+  apim:
+    image: wso2am/wso2am:4.0.0-alpha-alpine
+    healthcheck:
+      test: ["CMD", "nc", "-z","localhost", "9443"]
+      interval: 10s
+      start_period: 120s
+      retries: 50
+    ports:
+      - "9763:9763"
+      - "9443:9443"
+      - "5672:5672"
+      - "8243:8243"
+    volumes:
+      - ./resources/apim/deployment.toml:/home/wso2carbon/wso2am-4.0.0-alpha/repository/conf/deployment.toml

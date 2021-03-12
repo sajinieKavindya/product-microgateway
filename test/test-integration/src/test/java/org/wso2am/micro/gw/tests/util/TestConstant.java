@@ -62,6 +62,8 @@ public class TestConstant {
     public static final int GATEWAY_LISTENER_HTTPS_PORT = 9095;
     public static final int ADAPTER_IMPORT_API_PORT = 9843;
     public final static int MOCK_SERVER_PORT = 2383;
+    public final static int APIM_SERVLET_TRP_HTTPS_PORT = 9443;
+    public final static int APIM_SERVLET_TRP_HTTP_PORT = 9763;
 
 
     public static final String BASE_RESOURCE_DIR = "src" + File.separator + "test" + File.separator + "resources";
