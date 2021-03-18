@@ -34,4 +34,12 @@ public class URLs {
     public static String getMockServiceURLHttp(String servicePath) throws MalformedURLException {
         return new URL(new URL("http://localhost:" + TestConstant.MOCK_SERVER_PORT), servicePath).toString();
     }
+
+    public static String getAPIMServiceURLHttps(String servicePath) throws MalformedURLException {
+        return new URL(new URL("https://localhost:" + TestConstant.APIM_SERVLET_TRP_HTTPS_PORT), servicePath).toString();
+    }
+
+    public static String getAPIMServiceURLHttp(String servicePath) throws MalformedURLException {
+        return new URL(new URL("http://localhost:" + TestConstant.APIM_SERVLET_TRP_HTTP_PORT), servicePath).toString();
+    }
 }

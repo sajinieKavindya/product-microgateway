@@ -18,6 +18,7 @@
 
 package org.wso2am.micro.gw.tests.context;
 
+import java.io.File;
 import java.io.IOException;
 
 /**
